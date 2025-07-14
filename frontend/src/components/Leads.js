@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { leadsApi } from '../services/api';
 
 const Leads = () => {
+  const [searchParams] = useSearchParams();
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -20,7 +22,11 @@ const Leads = () => {
 
   useEffect(() => {
     fetchLeads();
-  }, []);
+    // Check if we should open the form automatically
+    if (searchParams.get('action') === 'new') {
+      setShowForm(true);
+    }
+  }, [searchParams]);
 
   const fetchLeads = async () => {
     try {
@@ -110,7 +116,7 @@ const Leads = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-gray-50 pb-24">
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-gray-900">Leads</h1>
@@ -123,8 +129,8 @@ const Leads = () => {
         </div>
 
         {showForm && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg p-6 w-full max-w-md max-h-full overflow-y-auto">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4" style={{ zIndex: 1000 }}>
+            <div className="bg-white rounded-lg p-6 w-full max-w-md max-h-[80vh] overflow-y-auto">
               <h2 className="text-xl font-semibold mb-4">
                 {editingLead ? 'Edit Lead' : 'New Lead'}
               </h2>

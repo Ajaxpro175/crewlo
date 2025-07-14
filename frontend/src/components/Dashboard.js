@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { projectsApi, leadsApi, estimatesApi } from '../services/api';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [stats, setStats] = useState({
     totalProjects: 0,
     activeProjects: 0,
@@ -43,6 +45,25 @@ const Dashboard = () => {
     }
   };
 
+  const handleQuickAction = (action) => {
+    switch (action) {
+      case 'new-project':
+        navigate('/projects?action=new');
+        break;
+      case 'add-lead':
+        navigate('/leads?action=new');
+        break;
+      case 'create-estimate':
+        navigate('/estimates?action=new');
+        break;
+      case 'generate-proposal':
+        navigate('/proposals?action=new');
+        break;
+      default:
+        break;
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -55,11 +76,11 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gray-50 p-4 pb-24">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600 mt-2">Welcome to Handoff Construction Estimator</p>
+          <p className="text-gray-600 mt-2">Welcome to Crewlo</p>
         </div>
 
         {/* Stats Grid */}
@@ -126,16 +147,28 @@ const Dashboard = () => {
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-colors">
+            <button 
+              onClick={() => handleQuickAction('new-project')}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-colors"
+            >
               New Project
             </button>
-            <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-colors">
+            <button 
+              onClick={() => handleQuickAction('add-lead')}
+              className="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-colors"
+            >
               Add Lead
             </button>
-            <button className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-3 rounded-lg transition-colors">
+            <button 
+              onClick={() => handleQuickAction('create-estimate')}
+              className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-3 rounded-lg transition-colors"
+            >
               Create Estimate
             </button>
-            <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-lg transition-colors">
+            <button 
+              onClick={() => handleQuickAction('generate-proposal')}
+              className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-lg transition-colors"
+            >
               Generate Proposal
             </button>
           </div>
