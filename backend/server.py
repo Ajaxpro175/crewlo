@@ -35,7 +35,7 @@ estimate_service = EstimateService(db)
 proposal_service = ProposalService(db)
 
 # Create the main app without a prefix
-app = FastAPI(title="Handoff Construction Estimator API", version="1.0.0")
+app = FastAPI(title="Crewlo API", version="1.0.0")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
@@ -43,7 +43,7 @@ api_router = APIRouter(prefix="/api")
 # Health check endpoint
 @api_router.get("/")
 async def root():
-    return {"message": "Handoff Construction Estimator API", "version": "1.0.0"}
+    return {"message": "Crewlo API", "version": "1.0.0"}
 
 # Project endpoints
 @api_router.post("/projects", response_model=Project)
