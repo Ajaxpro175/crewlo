@@ -5,6 +5,8 @@ import Projects from './components/Projects';
 import Leads from './components/Leads';
 import Estimates from './components/Estimates';
 import Materials from './components/Materials';
+import Proposals from './components/Proposals';
+import Invoices from './components/Invoices';
 import MobileNavigation from './components/MobileNavigation';
 import './App.css';
 
@@ -19,6 +21,8 @@ function App() {
             <Route path="/leads" element={<Leads />} />
             <Route path="/estimates" element={<Estimates />} />
             <Route path="/materials" element={<Materials />} />
+            <Route path="/proposals" element={<Proposals />} />
+            <Route path="/invoices" element={<Invoices />} />
           </Routes>
           <MobileNavigation />
         </div>

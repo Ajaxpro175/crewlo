@@ -59,6 +59,9 @@ const Dashboard = () => {
       case 'generate-proposal':
         navigate('/proposals?action=new');
         break;
+      case 'create-invoice':
+        navigate('/invoices?action=new');
+        break;
       default:
         break;
     }
@@ -144,33 +147,64 @@ const Dashboard = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-6 mb-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <button 
               onClick={() => handleQuickAction('new-project')}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-colors"
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg transition-colors flex items-center justify-center"
             >
-              New Project
+              🏗️ New Project
             </button>
             <button 
               onClick={() => handleQuickAction('add-lead')}
-              className="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-colors"
+              className="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-colors flex items-center justify-center"
             >
-              Add Lead
+              👥 Add Lead
             </button>
             <button 
               onClick={() => handleQuickAction('create-estimate')}
-              className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-3 rounded-lg transition-colors"
+              className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-3 rounded-lg transition-colors flex items-center justify-center"
             >
-              Create Estimate
+              📋 Create Estimate
             </button>
             <button 
               onClick={() => handleQuickAction('generate-proposal')}
-              className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-lg transition-colors"
+              className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-3 rounded-lg transition-colors flex items-center justify-center"
             >
-              Generate Proposal
+              📄 Generate Proposal
             </button>
+            <button 
+              onClick={() => handleQuickAction('create-invoice')}
+              className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-3 rounded-lg transition-colors flex items-center justify-center"
+            >
+              💰 Create Invoice
+            </button>
+          </div>
+        </div>
+
+        {/* Recent Activity */}
+        <div className="bg-white rounded-lg shadow p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Recent Activity</h2>
+          <div className="space-y-3">
+            <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                <span className="text-white text-sm">P</span>
+              </div>
+              <div>
+                <p className="text-sm font-medium">New project created</p>
+                <p className="text-xs text-gray-500">Modern Family Home - $250,000</p>
+              </div>
+            </div>
+            <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                <span className="text-white text-sm">L</span>
+              </div>
+              <div>
+                <p className="text-sm font-medium">New lead added</p>
+                <p className="text-xs text-gray-500">John Smith - Kitchen renovation</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
