@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from typing import Dict, Any
 
 class HandoffAPITester:
-    def __init__(self, base_url="https://333e19a5-4508-4789-8834-c9b29a5f9b4a.preview.emergentagent.com"):
+    def __init__(self, base_url="https://easy-deploy-15.preview.emergentagent.com"):
         self.base_url = base_url
         self.tests_run = 0
         self.tests_passed = 0
